@@ -1,0 +1,21 @@
+application: pwiki 
+version: 2
+runtime: python
+api_version: 1
+
+handlers:
+
+- url: /static
+  static_dir: static
+
+- url: /
+  script: main.py
+
+- url: /sign
+  script: sign.py
+
+- url: /sort.*
+  script: sort.py
+
+- url: /config.*
+  script: config.py

@@ -1,0 +1,72 @@
+body{
+	background: #dddddd;
+	font-family: Helvetica, Verdana, Arial, sans-serif;
+	font-size: 12px;
+	color: #666666;
+	line-height: 150%;
+}
+
+.div_main {
+	width: 630px;
+	margin: 0px auto 0px auto;
+	padding: 12px 0px 30px 0px;
+}
+
+div.input{
+        background-color:#00ffff        
+	width:580;
+        height:70px;
+        overflow:hidden;
+
+}
+
+div.content{
+	white-space:normal;
+	word-break:break-all
+}
+
+div.all_tag{
+	width:580px;
+	height:30px;
+}
+span.tags{
+	border: #aaaaaa 1px solid;
+	padding:2px;
+	margin:2px;
+	background-color:#e7f2FF;
+	cursor: pointer;
+	text-decoration: none;
+	text-align: center;
+	line-height:200%;
+}
+div.tags{
+	display:none;
+	padding-left:lem;
+	margin-top:2px;
+}
+div.form{
+	height:75px;
+}
+
+div.cell{
+	background: #ffffff;
+	    width:580px;
+	    padding: 10px;
+	    border-bottom: 1px solid #e2e2e2;
+	    font-size: 12px;
+	    line-height: 16px;
+}
+div.box{
+	width:600px;
+    background-color: #fff;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-box-shadow: 0px 1px 5px rgba(0, 0, 18, 0.4);
+    -webkit-box-shadow: 0px 1px 5px rgba(0, 0, 18, 0.4);
+    border-top: 1px solid #cccccf;
+    border-bottom: 2px solid #e2e2e2;
+}
+
+div.trail{
+	align="center"
+}

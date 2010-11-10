@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Cha0s</title>
+		<link href="/static/new.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript">
+			//<![CDATA[
+			function submittag(tagname){
+				var tagin=document.getElementsByName("tag")[0];
+				tagin.value=tagname;
+				document.formcontent.submit();
+				return(true);
+			}
+
+				        
+		</script>
+	</head>
+		                
+	<body>
+        	<div id="Wrapper" style="height:680px">
+		<div id="Top">
+            <div id="Navigation">
+                <a href="/" style="color:white">Home</a>
+            </div>
+        </div>
+                <div id="Main" style="width:200px">
+                <div class="Content">
+                <div class="box" align="center" >
+            	<div class="inner">
+                	<form name="formcontent" action="/config/sign" method="get">
+                        <div align="center" style="height:100px">
+                            <input name="content">
+                            <input type="submit" value="Add Tag">
+                        </div>
+                        <div align="center">
+                            <span style="color:red">
+                                {{msg}}
+                            </span>
+                        </div>
+                    </form>
+				</div>
+                </div>
+                </div>
+                </div>
+		        <div  align="center"><small>To obtain best performance,Please use Chrome Web Browser!</small>
+			        <a href="http://www.google.com/chrome" target="_blank" title="Download Chrome, NOW!">
+				    <img src="http://code.google.com/chromium/images/chromium-16.png">
+			    </a>
+		        </div>
+            </div>
+	</body>
+</html>
+
