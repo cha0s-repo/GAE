@@ -24,6 +24,7 @@ from google.appengine.ext import webapp
              
 from data import *
 import re
+from datetime import date
 
 class dumpNote(webapp.RequestHandler):
     def post(self):
@@ -34,6 +35,8 @@ class dumpNote(webapp.RequestHandler):
 
 		 
         user = users.get_current_user()
+
+        curdate = str(date.today().year)+'/'+str(date.today().month)
         if not user:
             self.redirect(users.create_login_url(self.request.uri))
             return 0
@@ -42,9 +45,10 @@ class dumpNote(webapp.RequestHandler):
             mynote.content = content
             mynote.tag = tag
             mynote.author = user
+            mynote.archi = curdate
             mynote.put()
 
-# Check if user is already in Authors database    
+            # Check if user is already in Authors database    
             nickname  = user.nickname()
             getauthor = db.GqlQuery("SELECT * FROM Authors WHERE name=:1 ORDER BY counter DESC LIMIT 10",nickname)
             if getauthor.count():
@@ -85,6 +89,24 @@ class dumpNote(webapp.RequestHandler):
                 self.redirect('/config')
 			
             gettag.put()
+            getarchi = db.GqlQuery("SELECT * FROM Archives LIMIT 10")
+            if getarchi.count():
+                if curdate != getarchi[0].name:
+                    newarchi = Archives(key_name=curdate)
+                    newarchi.name = curdate
+                    newarchi.taglist=[tag]
+                    newarchi.put()
+
+                if not tag in getarchi[0].taglist:
+                    getarchi = Archives.get_by_key_name(curdate)
+                    getarchi.taglist.append(tag)
+                    getarchi.put()
+            else: 
+                curdate = str(date.today().year)+'/'+str(date.today().month)
+                newarchi = Archives(key_name=curdate)
+                newarchi.name = curdate
+                newarchi.taglist=[tag]
+                newarchi.put()
 
         self.redirect('/')
                	

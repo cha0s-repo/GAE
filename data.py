@@ -7,6 +7,7 @@ class Notes(db.Model):
     content = db.StringProperty(multiline=True)
     date = db.DateTimeProperty(auto_now_add=True)
     tag = db.StringProperty(multiline=False)
+    archi = db.StringProperty(multiline=False)
 
 class Authors(db.Model):
     author = db.UserProperty()
@@ -18,3 +19,7 @@ class Tags(db.Model):
 	name = db.StringProperty(multiline=False)
 	counter = db.IntegerProperty()
 
+class Archives(db.Model):
+    name = db.StringProperty(multiline=False)
+    taglist = db.ListProperty(str)
+    date = db.DateTimeProperty(auto_now_add=True)

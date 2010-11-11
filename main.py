@@ -33,8 +33,9 @@ class MainPage(webapp.RequestHandler):
         user = users.get_current_user()
         islog = {} 
         mynotes = db.GqlQuery("SELECT * FROM Notes ORDER BY date DESC LIMIT 20")
-        mytags = db.GqlQuery("SELECT * FROM Tags ORDER BY counter DESC LIMIT 20")
+        mytags = db.GqlQuery("SELECT * FROM Tags ORDER BY counter DESC LIMIT 100")
         myauthors = db.GqlQuery("SELECT * FROM Authors ORDER BY counter DESC LIMIT 20")
+        archi = db.GqlQuery("SELECT * FROM Archives ORDER BY date DESC LIMIT 1000")
         if user:
             islog['url'] = users.create_logout_url(self.request.uri)
             islog['tell'] = 'Logout'
@@ -48,11 +49,12 @@ class MainPage(webapp.RequestHandler):
 		        'mynotes':mynotes,
 		        'tags':mytags,
                 'log':islog,
-                'authors':myauthors
+                'authors':myauthors,
+                'archi':archi,
         }
-
         path = os.path.join(os.path.dirname(__file__),'main.html')
         self.response.out.write(template.render(path,template_values))
+
 application = webapp.WSGIApplication([
             ('/', MainPage)
             ], debug=True)

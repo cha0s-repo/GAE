@@ -206,7 +206,7 @@ a.dark:hover {
 #Rightbar {
     float: right;
     width: 272px;
-    padding: 10px 0px 10px 10px;
+    padding: 10px 0px 10px 20px;
 }
 
 #Content {
@@ -255,6 +255,24 @@ a.dark:hover {
     font-size: 12px;
     line-height: 16px;
     background-color: #ffffe2;
+    border-top: 1px solid #ffffcc;
+    -moz-border-radius: 0px 0px 6px 6px;
+}
+
+.box .gray {
+    padding: 10px;
+    font-size: 12px;
+    line-height: 16px;
+    background-color: #dddddd;
+    border-top: 1px solid #ffffcc;
+    -moz-border-radius: 0px 0px 6px 6px;
+}
+
+.box .blue {
+    padding: 10px;
+    font-size: 12px;
+    line-height: 16px;
+    background-color: #ffff22;
     border-top: 1px solid #ffffcc;
     -moz-border-radius: 0px 0px 6px 6px;
 }

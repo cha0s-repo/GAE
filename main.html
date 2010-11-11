@@ -30,11 +30,26 @@
 		<div id="Wrapper">
         <div id="Main">
             <div id="Rightbar">
-            <div class="box">
+            <div style="height:90px">
+            </div>
+            <div class="box" style="width:230px; float:right">
             <div class="inner">
 									<a href="/config" class="count count_livid" style="font-size: 14px; float: center; color: black">config</a>
             </div>
-                <div class="yellow">
+                <div class="yellow"></div>
+            </div>
+            <div class="box" style="width:230px; float:right">
+                <div class="gray" style="font-size: 13px; height:5px">Archives</div>
+            <div class="inner">
+                {% for tlist in archi %}
+                <br>
+                {{tlist.name}}: 
+                {% for t in tlist.taglist %}
+									<a href="/sort?tag={{t}}">
+                    {{t}}
+									</a>
+                {% endfor %}
+                {% endfor %}
             </div>
             </div>
             </div>

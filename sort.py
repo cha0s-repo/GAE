@@ -45,6 +45,7 @@ class SortPage(webapp.RequestHandler):
         isauthor = db.GqlQuery("SELECT * FROM Authors WHERE nick=:1 LIMIT 20",index)
         mytags = db.GqlQuery("SELECT * FROM Tags ORDER BY counter DESC LIMIT 20")
 
+        archi = db.GqlQuery("SELECT * FROM Archives ORDER BY date DESC LIMIT 1000")
         if istag.count():
             mynotes = istag
             isauthor = db.GqlQuery("SELECT * FROM Authors ORDER BY counter DESC LIMIT 20")
@@ -59,7 +60,8 @@ class SortPage(webapp.RequestHandler):
 		    'mynotes':mynotes,
 		    'tags':mytags,
             'log':islog,
-            'authors':isauthor
+            'authors':isauthor,
+            'archi':archi
 	    }
         path = os.path.join(os.path.dirname(__file__),'main.html')
         self.response.out.write(template.render(path,template_values))
