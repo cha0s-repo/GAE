@@ -5,116 +5,117 @@
 		<link href="/static/new.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript">
 			//<![CDATA[
-			function submittag(tagname){
-				var tagin=document.getElementsByName("tag")[0];
-				tagin.value=tagname;
-				document.formcontent.submit();
-				return(true);
-			}
+		function submittag(tagname){
+			var tagin=document.getElementsByName("tag")[0];
+			tagin.value=tagname;
+			document.formcontent.submit();
+			return(true);
+		}
 
-				        
+
 		</script>
 	</head>
-		                
+
 	<body>
-        <div id="Top">
-            <span  style="color:#aaaaaa">
-                {{log.name}}
-            </span>
-            <div id="Navigation">
-            <a href="{{log.url}}" style="color:white">
-                {{log.tell}}
-            </a>
-            </div>
-        </div>
+		<div id="Top">
+			<span  style="color:#aaaaaa">
+				{{log.name}}
+			</span>
+			<div id="Navigation">
+				<a href="{{log.url}}" style="color:white">
+					{{log.tell}}
+				</a>
+			</div>
+		</div>
 		<div id="Wrapper">
-        <div id="Main">
-            <div id="Rightbar">
-            <div style="height:90px">
-            </div>
-            <div class="box" style="width:230px; float:right">
-            <div class="inner">
-									<a href="/config" class="count count_livid" style="font-size: 14px; float: center; color: black">config</a>
-            </div>
-                <div class="yellow"></div>
-            </div>
-            <div class="box" style="width:230px; float:right">
-                <div class="gray" style="font-size: 13px; height:5px">Archives</div>
-            <div class="inner">
-                {% for tlist in archi %}
-                <br>
-                {{tlist.name}}: 
-                {% for t in tlist.taglist %}
-									<a href="/sort?tag={{t}}">
-                    {{t}}
-									</a>
-                {% endfor %}
-                {% endfor %}
-            </div>
-            </div>
-            </div>
-            <div id="Content">
-        	<div class="box" >
-                	<form name="formcontent" action="/sign" method="post">
-                        <textarea name="content" rows="7" class="mll tall"></textarea>
-                        <input type="hidden" name="tag" value="hidden input">
-                    </form>
-            </div>
-			{% for tag in tags %}
-				<div class = "tags"></div>
-				<span class = "tags" onclick="submittag('{{tag.name}}')">{{tag.name}}
-				</span>
-			{% endfor %}
-            <div class="box" id="topic_index">
-			{% for note in mynotes %}
+			<div id="Main">
+				<div id="Rightbar">
+					<div style="height:95px">
+					</div>
 
-				<div class="cell">
-					<table cellpadding="0" cellspacing="0" border="0" width="640">
-						<tr><td width='100%' height='100%' valign='top'>
-								<div class="content">{{note.content|escape}}</div>
-								<span style="font-size:10px; float: left;">
-									<a href="/sort?tag={{note.tag}}">[{{note.tag}}]
-									</a>
-								</span>
-								<span style="font-size:10px; float: right;">
-									<b>
-					                    {% for nicker in authors %}
-                                            {% ifequal nicker.name note.author.nickname %}
-										        <a href="/sort?tag={{nicker.nick}}">{{nicker.nick}}</a>
-                                            {% else %}
-                                                {% if forloop.last %}
-                                                {% endif %}
-                                            {% endifequal %}
-                                        {% endfor %}   
-
-								
-									</b>
-                                    <small>
-									{{note.date.date}}
-                                    {{note.date|time:"g:i"}}
-                                    
-                                </small>
-								</span>
-								<br>
-								</div>
-							</td>
-					</table>
+					<div class="box" style="width:230px; float:right">
+						<div class="gray" style="font-size: 13px; height:5px">Archives</div>
+						<div class="inner">
+							{% for tlist in archi %}
+							<br>
+							{{tlist.name}}: 
+							{% for t in tlist.taglist %}
+							<a href="/sort?tag={{t}}">
+								{{t}}
+							</a>
+							{% endfor %}
+							{% endfor %}
+						</div>
+					</div>
+					<div class="box" style="width:230px; float:right">
+						<div class="inner">
+							<a href="/config" class="count count_livid" style="font-size: 14px; float: center; color: black">config</a>
+						</div>
+						<div class="yellow"></div>
+					</div>
 				</div>
-			{% endfor %}
-            </div>
-            </div>
+				<div id="Content">
+					<div class="box" >
+						<form name="formcontent" action="/sign" method="post">
+							<textarea name="content" rows="7" class="mll tall"></textarea>
+							<input type="hidden" name="tag" value="hidden input">
+						</form>
+					</div>
+					{% for tag in tags %}
+					<div class = "tags"></div>
+					<span class = "tags" onclick="submittag('{{tag.name}}')">{{tag.name}}
+					</span>
+					{% endfor %}
+					<div class="box" id="topic_index">
+						{% for note in mynotes %}
+
+						<div class="cell">
+							<table cellpadding="0" cellspacing="0" border="0" width="640">
+								<tr><td width='100%' height='100%' valign='top'>
+										<div class="content">{{note.content|escape}}</div>
+										<span style="font-size:10px; float: left;">
+											<a href="/sort?tag={{note.tag}}">[{{note.tag}}]
+											</a>
+										</span>
+										<span style="font-size:10px; float: right;">
+											<b>
+												{% for nicker in authors %}
+												{% ifequal nicker.name note.author.nickname %}
+												<a href="/sort?tag={{nicker.nick}}">{{nicker.nick}}</a>
+												{% else %}
+												{% if forloop.last %}
+												{% endif %}
+												{% endifequal %}
+												{% endfor %}   
+
+
+											</b>
+											<small>
+												{{note.date.date}}
+												{{note.date|time:"g:i"}}
+
+											</small>
+										</span>
+										<br>
+									</div>
+								</td>
+							</table>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
 		</div>
+		<div id="Bottom">                
+			<div  align="center"><small style="color:#E2E2E2">To obtain best performance,Please use Chrome Web Browser!
+					<a href="http://www.google.com/chrome" target="_blank" title="Download Chrome, NOW!">
+						<img src="http://code.google.com/chromium/images/chromium-16.png">
+
+					</a>
+				</small>
+			</div>
 		</div>
-        <div id="Bottom">                
-		<div  align="center"><small style="color:#E2E2E2">To obtain best performance,Please use Chrome Web Browser!
-			<a href="http://www.google.com/chrome" target="_blank" title="Download Chrome, NOW!">
-				<img src="http://code.google.com/chromium/images/chromium-16.png">
-                
-			</a>
-            </small>
-        </div>
-        </div>
 	</body>
 </html>
 
-	
+

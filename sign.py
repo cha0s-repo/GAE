@@ -42,6 +42,8 @@ class dumpNote(webapp.RequestHandler):
             return 0
 
         if len(content):
+            hkey=str(hash(content))
+            mynote = Notes(key_name=hkey)
             mynote.content = content
             mynote.tag = tag
             mynote.author = user
